@@ -1,0 +1,33 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:form": "jest ./section/form.spec.js",
+    "test:test": "jest ./test/test.spec.js",
+    "test:combined": "npm run test:form && npm run test:test",
+    "test:test2": "jest ./test/test2.spec.js",
+    "test:rewired" : "jest ./test/rewired.spec.js",
+    "test:quest" : "jest /test/quest.spec.js",
+    "test:negative": "jest /test/negative.spec.js",
+    "test:shop": "jest /shop/shop.spec.js",
+    "test:auth": "jest /auth/testauth.spec.js",
+    "test:start": "jest /section/start.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.13.5",
+    "babel-jest": "^26.6.3",
+    "expect-puppeteer": "^4.4.0",
+    "faker": "^5.4.0",
+    "puppeteer": "^7.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "babel-loader": "^8.2.2",
+    "jest": "^26.6.3"
+  }
+}
