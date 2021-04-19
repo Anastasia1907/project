@@ -12,7 +12,7 @@
     "test:quest": "jest ./rewired/quest.spec.js",
     "test:negative": "jest ./rewired/negative.spec.js",
     "test:shop": "jest ./shop/form.spec.js",
-    "test:auth": "jest ./auth/testauth.spec.js",
+    "test:auth": "jest ./auth/metamask.spec.js",
     "test:start": "jest ./demo/start.spec.js",
     "test:telecom": "jest ./demo/telecom.spec.js",
     "test:insurance": "jest ./demo/insurance.spec.js",

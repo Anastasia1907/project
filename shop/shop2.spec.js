@@ -20,12 +20,12 @@ const lead = {
 beforeAll(async() => {
     browser = await puppeteer.launch({
         headless: false,
-        slowMo: 60
+        slowMo: 50
     });
     page = await browser.newPage();
     await page.setViewport({
-        width: 1920,
-        height: 1080
+        width: 560,
+        height: 530
     })
 });
 
@@ -36,26 +36,27 @@ describe("shop", () => {
         const signinbutton = await page.waitForXPath('/html/body/div/div[1]/header/div[2]/div/div/nav/div[1]/a');
         await signinbutton.click();
         await page.waitForXPath('/html/body/div/div[2]/div/div[3]/div/div/div[1]/form/div/div[2]/input');
-        await page.waitFor(5000);
+        //await page.waitFor(5000);
         await page.type('#email_create', lead.email);
-        await page.waitForXPath('/html/body/div/div[2]/div/div[3]/div/div/div[1]/form/div/div[3]/button');
-        await page.waitFor(5000);
+        //await page.waitForXPath('/html/body/div/div[2]/div/div[3]/div/div/div[1]/form/div/div[3]/button');
+        //await page.waitFor(5000);
         await page.click('#SubmitCreate');
-        await page.hover('#customer_firstname');
+        //await page.hover('#customer_firstname');
         await page.waitFor(10000);
-        await page.click('#id_gender');
-        await page.type('#customer_firstname', lead.firstName);
+        await page.click('#id_gender2');
+        await page.type('#customer_firstname', lead.name);
+        await page.type('#customer_lastname', lead.lastname)
         await page.type('#passwd', lead.pass);
         await page.select('#days', "22");
         await page.select('#months', "10");
         await page.select('#years', "1988");
-        await page.type('#firstname', lead.firstName);
-        await page.type('#lastname', lead.lastname);
+        //await page.type('#firstname', lead.name);
+        //await page.type('#lastname', lead.lastname);
         await page.type('#company', lead.company);
         await page.type('#address1', lead.address);
         await page.type('#city', lead.city);
         await page.select('#id_state', "13");
-        await page.type('#postcode', lead.code);
+        await page.type('#postcode', "12345");
         await page.type('#phone_mobile', lead.phone);
         await page.click('#alias', {clickCount: 3});
         await page.keyboard.press('Backspace');
@@ -63,7 +64,7 @@ describe("shop", () => {
         await page.click('#submitAccount');
         const ProfileMenu = await page.waitForXPath('/html/body/div/div[2]/div/div[3]/div/div/div[1]/ul/li[1]/a/span');
         expect(ProfileMenu).toBeTruthy()
-    }, 40000);
+    }, 70000);
 
     test("shoping", async() => {
         const WomaLink = await page.waitForXPath('/html/body/div/div[1]/header/div[3]/div/div/div[6]/ul/li[1]/a');
