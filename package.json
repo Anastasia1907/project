@@ -16,7 +16,8 @@
     "test:start": "jest ./demo/start.spec.js",
     "test:telecom": "jest ./demo/telecom.spec.js",
     "test:insurance": "jest ./demo/insurance.spec.js",
-    "test:shop2": "jest ./shop/shop2.spec.js"
+    "test:shop2": "jest ./shop/shop2.spec.js",
+    "test:regATH": "jest ./auth/testauth.spec.js"
   },
   "author": "",
   "license": "ISC",

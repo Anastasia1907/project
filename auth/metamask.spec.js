@@ -3,6 +3,8 @@ const dappeteer = require("dappeteer");
 const path = require("path");
 
 let browser, page, mmPage;
+const width = 1920;
+const height = 1080;
 
 const METAMASK_PATH = path.resolve() + '/metamask/9.3.0';
 
@@ -31,7 +33,6 @@ beforeAll(async () => {
       `--load-extension=${METAMASK_PATH}`,
     ]
   });
-  //page = await browser.newPage();
   
   mmPage = await getMetamaskPage(browser);
 });
@@ -63,10 +64,7 @@ describe("auth test", () => {
 
   test("authencity openning", async () => {
     const page = await browser.newPage();
-    /*await page.setViewport({
-      width: 1920,
-      height: 1080
-    });*/
+    await page.setViewport({width, height});
     await page.goto('https://authencity.vrealsoft.com/');
     await mmPage.bringToFront();
     const cancelButton = await mmPage.waitForXPath('/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]');
@@ -80,9 +78,9 @@ describe("auth test", () => {
     const netselect = await mmPage.waitForXPath('/html/body/div[1]/div/div[3]/div/li[4]/span');
     await netselect.click();
     await page.bringToFront();
-    const menu = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]/button');
-    await menu.click();
-    const connection = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]/div/div[4]');
+    //const menu = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]/button');
+    //await menu.click();
+    const connection = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]');
     await connection.click();
     await mmPage.bringToFront();
     await mmPage.reload();
@@ -91,38 +89,62 @@ describe("auth test", () => {
     await page.bringToFront();
     const result = await page.waitForXPath('/html/body/div/div[2]/div/div[2]');
     expect(result).toBeTruthy();
-    const menu2 = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]/button');
-    await menu2.click();
-    await menu2.click();
-    const selection = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]/div/div[4]');
+    //const menu2 = await page.waitForXPath('/html/body/div/div[2]/div[1]/div[4]/button');
+    //await menu2.click();
+    //await menu2.click();
+    const selection = await page.waitForXPath('/html/body/div/div[3]/div[1]/div[4]');
     await selection.click();
     const profileselection = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/div/div[2]/div[3]/div[1]/div');
     await profileselection.click();
     const cookie = await page.waitForXPath('/html/body/div/div[1]/div/div[2]/div/button[2]');
     await cookie.click();
+    /*const pencilImage = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/form[1]/div[1]/div/button');
+    const [filehooser] = await Promise.all([
+      page.waitForFileChooser(),
+      pencilImage.click()
+    ]);
+    await filehooser.accept(['/Users/Vreal-QA/Downloads/wallhaven-nkvvlm.jpg']);*/
     const inputBIO = await page.waitForXPath('/html/body/div/div[3]/div[1]/div/form[1]/div[4]/div/textarea');
     await inputBIO.type("Lorem ipsum");
-    const saveBIO = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/form[1]/div[5]/button');
-    await saveBIO.click()
-  }, 40000);
- 
-  /*test("editing profile", async () => {
-    /*const cookie = await page.waitForXPath('/html/body/div/div[1]/div/div[2]/div/button[2]');
-    await cookie.click();
-    const cancelBIO = await page.waitForXPath('/html/body/div/div[3]/div[1]/div/form[1]/div[5]/div');
+    const saveBIO = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/form[1]/div[5]/button/div');
+    await saveBIO.click();
+    const result2 = await page.waitForXPath('/html/body/div/div[1]/div/div[2]');
+    expect(result2).toBeTruthy();
+    const cancelBIO = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/form[1]/div[5]/div');
     await cancelBIO.click();
-    const pencilBIO = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/form[1]/div[3]/button');
-    await pencilBIO.click();
-    const inputBIO = await page.waitForXPath('/html/body/div/div[3]/div[1]/div/form[1]/div[4]/div/textarea');
-    await inputBIO.click();
-    const saveBIO = await page.waitForXPath('/html/body/div/div[2]/div[1]/div/form[1]/div[5]/button');
-    await saveBIO.click()
+    //await page.evaluate(()=>document.querySelector('#root > div[2] > div[2] > div[2] > div[2] > div > button').click())
     await page.bringToFront();
-    const copyWallet = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[1]/div[2]/div[2]/div/div[1]');
-    await copyWallet.click()
-  }, 30000)*/
+    const writeButton = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/button');
+    await writeButton.click();
+    const emptyPost = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div/div[3]/div[2]/button');
+    await emptyPost.click();
+    const result3 = await page.waitForXPath('/html/body/div/div[1]/div/div[2]');
+    expect(result3).toBeTruthy();
+    //await page.waitForXPath('/html/body/div/div[2]/div[2]/div[1]/div[2]/div[2]/div/div[1]');
+    const postForm = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/textarea');
+    await postForm.type('test #tester ');
+    
+    const getPrice = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div/div[3]/div[1]/div[2]/button');
+    await getPrice.click();
+    const price = await page.waitForXPath('/html/body/div/div[1]/div/div[2]');
+    expect(price).toBeTruthy();
+    const addBlock = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div/div[3]/div[1]/div[2]/img');
+    await addBlock.click();
+    const newMsg = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div[2]/div[2]/textarea');
+    await newMsg.type('new text');
+    /*await emptyPost.click();
+    await mmPage.bringToFront();
+    await mmPage.waitFor(5000);
+    await mmPage.reload();
+    const confirmtrans = await mmPage.waitForXPath('//*[@id="app-content"]/div/div[4]/div/div[3]/div[3]/footer/button[2]');
+    await confirmtrans.click();
+    await page.bringToFront();
+    const PostCreated = await page.waitForXPath('/html/body/div/div[1]/div/div[2]');
+    expect(PostCreated).toBeTruthy();*/
+  }, 90000);
+
 })
 
-/*afterAll(() => {
+afterAll(() => {
   browser.close()
-})*/
+})
