@@ -100,18 +100,24 @@ describe("auth test", () => {
     await email.type('email@test.com');
     const ClaimButton = await page.waitForXPath('//*[@id="signUpForm"]/button/div');
     await ClaimButton.click();
-    const checkbox1 = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div[2]/div[2]/div[1]/div');
-    await checkbox1.click();
-    const checkbox2 = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div[2]/div[2]/div[2]/div');
-    await checkbox2.click();
-    const termsButton = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div[3]/button');
-    await termsButton.click();
-    await mmPage.bringToFront();
-    await mmPage.reload();
-    const confirm1 = await mmPage.waitForXPath('//*[@id="app-content"]/div/div[4]/div/div[3]/button[2]');
-    await confirm1.click();
-    await page.bringToFront();
+    //const checkbox1 = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div[2]/div[2]/div[1]/div');
+    //await checkbox1.click();
+    //const checkbox2 = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div[2]/div[2]/div[2]/div');
+    //await checkbox2.click();
+    //const termsButton = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div[3]/button');
+    //await termsButton.click();
+    //await mmPage.bringToFront();
+    //await mmPage.reload();
+    //const confirm1 = await mmPage.waitForXPath('//*[@id="app-content"]/div/div[4]/div/div[3]/button[2]');
+    //await confirm1.click();
+    //await page.bringToFront();
+    const error1 = await page.waitForXPath('/html/body/div/div[2]/div/div[2]');
+    expect(error1).toBeTruthy()
     
 
   }, 50000)
+})
+
+afterAll(()=> {
+  browser.close()
 })
