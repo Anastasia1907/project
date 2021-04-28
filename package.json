@@ -6,18 +6,14 @@
   "scripts": {
     "test": "jest",
     "test:form": "jest ./shop/form.spec.js",
-    "test:test": "jest ./demo/test.spec.js",
-    "test:test2": "jest ./test/test2.spec.js",
     "test:rewired": "jest ./rewired/rewired.spec.js",
     "test:quest": "jest ./rewired/quest.spec.js",
     "test:negative": "jest ./rewired/negative.spec.js",
-    "test:shop": "jest ./shop/form.spec.js",
     "test:auth": "jest ./auth/metamask.spec.js",
-    "test:start": "jest ./demo/start.spec.js",
-    "test:telecom": "jest ./demo/telecom.spec.js",
-    "test:insurance": "jest ./demo/insurance.spec.js",
-    "test:shop2": "jest ./shop/shop2.spec.js",
-    "test:regATH": "jest ./auth/testauth.spec.js"
+    "test:regATH": "jest ./auth/testauth.spec.js",
+    "test:skylineLogin": "jest ./skyline/login.spec.js",
+    "test:skylineLoginMobile": "jest ./skyline/login_mobile.spec.js", 
+    "test:skylineSettings": "jest ./skyline/settings.spec.js"
   },
   "author": "",
   "license": "ISC",

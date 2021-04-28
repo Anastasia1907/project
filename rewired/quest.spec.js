@@ -32,10 +32,7 @@ describe('Pass questionnaire', () => {
         const CampaignLink = await page.waitForXPath('/html/body/div[1]/div/div[2]/div/div/div[4]/div/div[1]/div[1]/div[1]/div[2]/a[4]');
         await CampaignLink.click();
         await page.waitForSelector('#Outline');
-        let path = await page.$x('/html/body/div[1]/div/div[2]/div/div/div/div[3]/div[2]/div/div[7]/div/div[2]/div/div/div[1]/span');
-        path = path.pop();
-        path = await path.getProperty('innerText');
-        path = await path.jsonValue();
+        ;
         console.log(path);
         console.log(typeof path);
         const page1 = await browser.newPage();
