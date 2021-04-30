@@ -15,8 +15,8 @@ beforeAll(async() =>{
     await page.setViewport({width, height});
 });
 
-describe("test login", () => {
-    test("empty fields", async() => {
+describe("test login page", () => {
+    test("login with empty fields", async() => {
         await page.goto(loginURL);
         await page.waitForXPath('/html/body/div[3]/div/div/div/div/div/form/div[1]/h2');
         await page.click('#next');
@@ -34,7 +34,7 @@ describe("test login", () => {
         expect(alertEmptyFields2).toBe('Please enter your password')
     });
 
-    test("empty email", async() => {
+    test("login with empty email", async() => {
         await page.type('#email', " ");
         await page.type('#password', "123456");
         await page.click('#next');
@@ -46,7 +46,7 @@ describe("test login", () => {
         expect(alertEmptyLogin).toBe('Please enter your Email Address');
     });
 
-    test("empty password", async() => {
+    test("login with empty password", async() => {
         await page.type('#email', "test@test.com");
         await page.click('#password', {clickCount: 3});
         await page.keyboard.press('Backspace');
