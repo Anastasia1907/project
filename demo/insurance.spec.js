@@ -17,7 +17,7 @@ const lead = {
 
 beforeAll(async() => {
     browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         slowMo: 0
     });
     page = await browser.newPage()

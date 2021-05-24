@@ -14,7 +14,8 @@
     "test:skylineLogin": "jest ./skyline/login.spec.js",
     "test:skylineLoginMobile": "jest ./skyline/login_mobile.spec.js",
     "test:skylineSettings": "jest ./skyline/settings.spec.js",
-    "test:cy": "cypress open"
+    "test:cy": "cypress open",
+    "test:insur": "jest ./demo/telecom.spec.js"
   },
   "author": "",
   "license": "ISC",

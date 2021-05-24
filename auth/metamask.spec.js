@@ -128,7 +128,7 @@ describe("auth test", () => {
     await getPrice.click();
     const price = await page.waitForXPath('/html/body/div/div[1]/div/div[2]');
     expect(price).toBeTruthy();
-    const addBlock = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div/div[3]/div[1]/div[2]/img');
+    const addBlock = await page.waitForXPath('//*[@id="custom-modal"]/div/div/div/div[1]/div/img');
     await addBlock.click();
     const newMsg = await page.waitForXPath('/html/body/div/div[2]/div[2]/div[2]/div[2]/div/div/div/div/div[2]/div[2]/textarea');
     await newMsg.type('new text');
