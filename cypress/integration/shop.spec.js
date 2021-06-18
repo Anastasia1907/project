@@ -124,5 +124,10 @@ describe('new shop', () => {
         cy.get('.button-2').click()
         cy.get('h1').should('contain', 'Order information')
     })
+
+    it('logout', () => {
+        cy.get('.ico-logout').click()
+        cy.get('body > div.master-wrapper-page > div.master-wrapper-content > div.header > div.header-links-wrapper > div.header-links > ul > li:nth-child(2) > a').should('contain', 'Log in')
+    })
 })
 
