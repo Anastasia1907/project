@@ -5,7 +5,7 @@ let browser, page, page2, cardInfo, CVV, date
 beforeAll(async() => {
     browser = await puppeteer.launch({
         headless: false,
-        slowMo: 50
+        slowMo: 40
     });
     page = await browser.newPage()
 });
@@ -87,11 +87,43 @@ describe("test toy shop", () => {
         let max = 100
         let dif = max-cost
         console.log(dif)
-        //expect(limit).to.equal(dif)
+        expect(dif).toBe(40)
     }, 40000)
 
+    test('check buying without money', async() => {
+        const shop = await page.waitForXPath('/html/body/header/div/a[1]')
+        await shop.click()
+        const amount2 = await page.waitForXPath('//*[@id="three"]/div/form/div/div[4]/select')
+        await amount2.select('4')
+        const buyNow = await page.waitForXPath('/html/body/section/div/form/div/div[8]/ul/li/input')
+        await buyNow.click()
+        await page.waitForXPath('/html/body/section/div/form/div[1]/div/font[2]')
+        await page.type('#card_nmuber', cardInfo.toString())
+        await page.select('#month', date[0])
+        await page.select('#year', date[1])
+        await page.type('#cvv_code', CVV.toString())
+        const BuyBuy = await page.waitForXPath('/html/body/section/div/form/div[2]/div/ul/li/input')
+        await BuyBuy.click()
+
+
+    }, 30000)
     
-    
+    test('check balance', async() => {
+        const menu2 = await page.waitForXPath('/html/body/header/div/a[2]/span')
+        await menu2.click()
+        const balance2 = await page.waitForXPath('/html/body/div[2]/a[3]')
+        await balance2.click()
+        await page.waitFor(3000)
+        await page.type('#card_nmuber', cardInfo.toString())
+        const checkButton2 = await page.waitForXPath('//*[@id="three"]/div/form/div/div[6]/input')
+        await checkButton2.click()
+        await page.waitFor(1000)
+        let limit2 = await page.$x('/html/body/section/div/div/h4/span')
+        limit2 = limit2.pop()
+        limit2 = await limit2.getProperty('innerText')
+        limit2 = await limit2.jsonValue()
+        expect(limit2).toContain('-')
+    }, 40000)
 })
 
 afterAll(() => {

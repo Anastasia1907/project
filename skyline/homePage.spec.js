@@ -4,7 +4,7 @@ let page, brower;
 const width = 1920;
 const height = 1080;
 
-const loginURL = "https://crane.vrealsoft.com/";
+const loginURL = "https://beta-vl-app.azurewebsites.net/";
 
 
 beforeAll(async () => {
@@ -20,8 +20,8 @@ describe("test home page", () => {
     test("main page: general tab", async () => {
         await page.goto(loginURL);
         await page.waitForXPath('/html/body/div[3]/div/div/div/div/div/form/div[1]/h2');
-        await page.type('#email', "alex.povereny@gmail.com")
-        await page.type('#password', "Eitanpo3");
+        await page.type('#email', "brokennote19@gmail.com")
+        await page.type('#password', "1234Qwer");
         await page.click('#next');
         let monthlyActivity = await page.$x('/html/body/div[1]/div/div[5]/div[3]/div/div[1]/div[3]/div/div/div[1]/div/font/font');
         monthlyActivity = monthlyActivity.pop();
